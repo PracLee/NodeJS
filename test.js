@@ -1,3 +1,3 @@
 // short cut
 // cmd + shift + P
-console.log('test.js')
+console.log('Hello! Node!')

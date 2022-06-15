@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "test": "echo \"Hello! World!\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PracLee/NodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PracLee/NodeJS/issues"
+  },
+  "homepage": "https://github.com/PracLee/NodeJS#readme",
+  "description": "",
+  "devDependencies": {
+    "prettier": "^2.7.0"
+  }
+}

@@ -1,0 +1,26 @@
+nodejs.org 접속 후 다운
+LTS(long Trem Service) : 오래되어 안정적으로 사용 가능
+
+node의 경우 Version Control이 중요하다.
+버전관리 도구 
+1. NVM
+ - 설치시 관리할때 문제 발생 가능
+
+2. tj/n
+ - 직관적으로 노드 버전을 관리 할 수 있음 
+
+
+NPM(nodejs package manager)
+ - 다른 방법도 많지만, node 설치시 자동으로 설치됨
+ * 사용방법
+  - terminal : npm init -y
+  - package.json    파일 생성됨
+ * package.json 특징
+  - package의 metadata를 포함 : 개인프로젝트 일지라도 package로 생각 -> 배포하지않을시, name, version 등 필요없음
+  - 의존성을 주입합!!!!
+  - scripts : npm을 사용하면서 자주 사용하게되는 스크립트들을 간단하게 만들어서 사용
+   -> 사용법 : terminal : npm run '키워드 명'
+ * setting.json : 로컬 세팅을 모아둠(이 프로젝트에 적용되는 세팅들을 모아둠)
+
+
+
