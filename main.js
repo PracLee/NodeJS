@@ -2,5 +2,13 @@
 // Formatting : Prettier 사용
 // 설치방법 (terminal입력)
 // npm install --save-dev prettier
-// VSCode에게 
+
+// Linting : ESLint 사용
+// 설치방법 (terminal입력)
+// npm install --save-dev eslint
+
+
+/* eslint-disable-next-line */
 console.log('Hello World!')
+
+console.log('왜 작동하니?')
