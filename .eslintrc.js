@@ -7,6 +7,7 @@
 // (윗줄과 이어서) eslint-plugin-import (plugin file 설치)
 // 이런 설정에서는 formatting과 충돌을 일으킬 수 있기 때문에
 // npm install --save-dev eslint-config-prettier    설치
+// 오류시 해당 링크 사용 https://velog.io/@ggombee/eslint
 module.export = {
-    extends:['airbnb-base', 'prettier'],
+  extends: ['airbnb-base', 'plugin:node/recommended', 'prettier'],
 }

@@ -20,7 +20,7 @@ NPM(nodejs package manager)
   - 의존성을 주입합!!!!
   - scripts : npm을 사용하면서 자주 사용하게되는 스크립트들을 간단하게 만들어서 사용
    -> 사용법 : terminal : npm run '키워드 명'
- * setting.json : 로컬 세팅을 모아둠(이 프로젝트에 적용되는 세팅들을 모아둠)
+ * setting.json : 로컬 세팅을 모아둠(이 프로젝트에 적용되는 세팅들을 모아둠) .vscode 하위에 넣어두어야 함
 
 
 

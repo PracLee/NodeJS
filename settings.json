@@ -1,4 +1,0 @@
-{
-    "[javascript]":{"editor.formatOnSave":true,
-    "editor.defaultFormatter":"esvenp.prettier-vscode"}
-}
