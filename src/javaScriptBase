@@ -1,0 +1,38 @@
+Event Loop
+node를 잘 이해하기 위한 자바스크립트의 동시성 모델에 대한 이해
+자바스크립트의 실행 모델은 event loop, call stack, callback queue 개념으로 존재
+
+Event loop
+여러개의 스레드를 사용
+작성한 js 코드가 실행되는 스레드가 메인 스레드
+node.js 프로세스에서 메인 스레드는 하나, 한 순간에 한 줄씩 실행
+그 외의 일을 하는 워커 스레드는 여러개
+
+Call stack
+지금 시점까지 쌓인 함수들의 스택(stack)
+함수가 호출될 때 쌓이고, 리턴할 때 빠짐
+이벤트 루프가 다음 콜백을 처리하려면, 지금 처리하는 콜백의 실행이 끝나야함
+call stack이 완전이 처리한다는 것과 동일
+
+Callback queue
+앞으로 실행할 콜백들을 쌓아두는 큐(queue)
+콜백은 브라우저나 node가 어떤 이벤트*가 발생하면 메인 스레드에 이를 알려주기 위해 사용됨
+* 이벤트 : 파일의 처리의 완료, 네트워크 작업의 완료, 타이머 호출 등
+
+
+* call stack이 절대 비지 않으면 (ex while(true)...) callback queue에서 콜백을 꺼낼 수가 없기 때문에,
+  setInterval이 아무리 콜백을 쌓아도 메인스레드에서 실행될 수가 없음
+  => 이런경우를 event loop를 block한다고 함
+
+
+브라우저나 node에서나, web API 혹은 node API의 동작이 끝나면, callback queue에 등록
+요청 받은 일을 하고 있는 동안 메인 스레드와 이벤트 루프는 영향을 받지 않고 계속 실행
+-> 이를 offloading이라고 하며, Node 서버의 메인 스레드가 하나임에도 불구하고 빠르게 동작할 수 있는 이유
+
+** 작동 순서 **
+1. callback queue에서 콜백을 꺼내고 (없다면 생길 때까지 기다리고)
+2. 그 콜백이 처리가 끝날 때까지 워크스레드가 실행
+3. 이를 반복
+
+
+callback queue, call stack 은 java의 heap영역과 비슷한건가?
