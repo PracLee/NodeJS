@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "echo \"Hello! World!\""
+    "test": "echo \"Hello! World!\"",
+    "debug":"node src/main2.js"
   },
   "repository": {
     "type": "git",
