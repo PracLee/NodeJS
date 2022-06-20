@@ -1,0 +1,64 @@
+let, const
+ - ES2015(ES6)에 추가된 변수 선언 키워드
+ - hoisting 규칙이 없고, block scoping을 지원함
+ - var보다 훨씩 예측 가능한 코드 작성 가능
+
+let,const
+ - let은 레퍼런스가 바뀔 수 있고
+ - const는 레퍼런스가 바뀔 수 없다
+
+let, const VS var
+ - var는 같은 스코프 내에서 같은 변수를 두번이상 정의 가능
+ - var는 선언하는 줄 전에 접근은 가능
+ - var는 block scoping을 가지지 않음
+ - let, const는 같은 스코프 내에서 같은 변수를 두번이상 정의 불가능
+ - let, const는 선언하는 줄 전에 접근 불가능
+ - let, const는 block scoping을 가짐
+ -> let과 const의 예측 가능성과 유지보수성이 var보다 뛰어남
+ => 가능하다면 const만 쓰고, 필요한 경우에 한해 let, var는 NOT USE
+
+
+Spread syntax(...)
+ - ES2015에서 추가된 syntax
+ - 병합, 구조 분배 할당(destructuring)등에 다양하게 활용 가능
+
+ Ex1. Object Merge : 두개 이상의 Object들을 하나의 데이터로 병합
+    const personData = {
+        nickname : 'Nick',
+        email : 'Nick@Gmail.com'
+    }
+
+    const publicData = {
+        age : 22,
+    }
+
+    const user {
+        ...personData,
+        ...publicData
+    }
+
+ Ex2. Object Merge : Object override
+    const overrides = {
+        DATABASE_HOST : 'myhost.com',
+        DATABASE_PASSWORD : 'mypassword',
+    }
+
+    const config = {
+        DATABASE_HOST : 'default.host.com',
+        DATABASE_PASSWORD : '****'
+        DATABASE_USERNAME : 'myuser',
+        ...overrides,   -> 앞쪽의 데이터를 덮어씌움, ...overrides가 앞에 위치할경우 앞쪽의 데이터가 덮어 씌워짐
+    }
+
+ Ex3. Object Rest : Object에서 원하는 정보만 제거한 Object 재생성 가능
+    const user = {
+        nickname : 'nick',
+        age : 22,
+        email : 'nick@gamil.com',
+    }
+
+    cosnt { nickname, ...personalData } = user
+    console.log(personalData)   -> { age : 22, email : 'nick@gamil.com' }
+
+ Ex4. Array Merge : Object Merge 와 마찬가지로 배열 Merge 가능
+ Ex4. Array Rest : Object Rest 와 마찬가지로 배열 Rest 가능
