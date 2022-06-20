@@ -124,19 +124,37 @@ function solve2() {
  *  ["부산", "dog"],
  * ]
  */
-
+// 원하는 데이터로 모양을 만들고 그것을 return
 function solve2Functional() {
-  return people
-    .map(({ pet: petOrPets, city }) => {
-      const pets =
-        (typeof petOrPets === 'string' ? [petOrPets] : petOrPets) || []
+  return (
+    people
+      .map(({ pet: petOrPets, city }) => {
+        const pets =
+          (typeof petOrPets === 'string' ? [petOrPets] : petOrPets) || []
 
-      return {
-        city,
-        pets,
-      }
-    })
-    .map(({ city, pets }) => {})
+        return {
+          city,
+          pets,
+        }
+      })
+      // flat + map
+      .flatMap(({ city, pets }) => pets.map((pet) => [city, pet]))
+      .reduce((result, [city, pet]) => {
+        if (!city || !pet) {
+          return result
+        }
+
+        return {
+          ...result,
+          [city]: {
+            ...result[city],
+            [pet]: (result[city]?.[pet] || 0) + 1, // optional chaining(?.) : 앞의 값이 undefined || null => stop, else => 뒤의 연산 진행
+          },
+        }
+      }, {})
+  )
+  //    .flat() // 여러겹의 배열들을 한번 꺼내줌
 }
 
 console.log('solve2', solve2())
+console.log('solve2Functional', solve2Functional())
