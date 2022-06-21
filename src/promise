@@ -1,0 +1,3 @@
+Promise
+ - 비동기 처리를 할때, callback으로 명시하게 되는데, 스파게티 코드가 될 수 있으므로, asyncAwait || promise 사용
+ 
