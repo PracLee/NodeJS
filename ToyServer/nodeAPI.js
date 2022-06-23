@@ -9,6 +9,26 @@
 // http 모듈 호출
 const http = require('http')
 
+// JSDoc을 사용하여 형식 고정
+/**
+ * @typedef Post
+ * @property {string}id
+ * @property {string}title
+ * @property {string}content
+ */
+/** @type {Post[]} */
+const posts = [
+  {
+    id: 'my_first_post',
+    title: 'My First Post',
+    content: 'Hello!',
+  },
+  {
+    id: 'Second',
+    title: 'My Second Post',
+    content: 'Second',
+  },
+]
 // 서버 자동 초기화 툴 : nodemon
 // -> 서버 파일 변경후 저장하면, 바로 서버 재기동함
 // 설치 : npm install --save-dev nodemon
