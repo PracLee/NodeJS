@@ -26,7 +26,7 @@ const posts = [
   {
     id: 'Second',
     title: 'My Second Post',
-    content: 'Second',
+    content: '두번째 포스트',
   },
 ]
 // 서버 자동 초기화 툴 : nodemon
@@ -46,17 +46,56 @@ const server = http.createServer((req, res) => {
   const POSTS_ID_REGX = /^\/posts\/([a-zA-Z0-9-_]+)$/
   const postIdREGXResult = (req.url && POSTS_ID_REGX.exec(req.url)) || undefined // How to get REGX
   if (req.url === '/posts' && req.method === 'GET') {
+    const result = {
+      post: posts.map((post) => ({
+        id: post.id,
+        titile: post.title,
+      })),
+      totalCnt: posts.length,
+    }
     res.statusCode = 200
-    res.end('List of Posts')
+    res.setHeader('Content-Type', 'application/json;  charset=utf-8')
+    res.end(JSON.stringify(result))
 
     // return boolean
-  } else if (postIdREGXResult) {
+  } else if (postIdREGXResult && req.method === 'GET') {
     //get post Id
     const postId = postIdREGXResult[1]
-    console.log(`postID : ${postId}`)
-    res.statusCode = 200
-    res.end('Some Content of the Post')
-  } else if (req.url === 'posts/:body' && req.method === 'POST') {
+
+    const post = posts.find((post) => post.id === postId)
+
+    if (post) {
+      res.statusCode = 200
+      // JSON형식으로 보낸다고 선언
+      res.setHeader('Content-Type', 'application/json;  encoding=utf-8')
+      res.end(JSON.stringify(post))
+    } else {
+      res.statusCode = 404
+      res.end('Post Not Found')
+    }
+
+    //    console.log(`postID : ${postId}`)
+    //    res.statusCode = 200
+    //    res.end('Some Content of the Post')
+  } else if (req.url === '/posts' && req.method === 'POST') {
+    req.setEncoding('utf-8')
+    req.on('data', (data) => {
+      /**
+       * @typedef CreatePostBody
+       * @property {string} title
+       * @property {string} content
+       */
+
+      /** @type{CreatePostBody} */
+      const body = JSON.parse(data)
+      console.log(body)
+      posts.push({
+        id: body.title.toLowerCase().replace(/\s/g, '_'),
+        title: body.title,
+        content: body.content,
+      })
+    })
+
     res.statusCode = 200
     res.end('Creating post')
   } else {
