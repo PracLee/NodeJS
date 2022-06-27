@@ -31,7 +31,7 @@ const posts = [
 /**
  * @typedef APIResponse
  * @property {number} statusCode
- * @property {*} body
+ * @property {string | Object} body
  */
 /**
  * @typedef Raute
