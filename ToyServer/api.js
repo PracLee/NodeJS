@@ -1,4 +1,5 @@
 // @ts-check
+
 // 추상화
 
 // JSDoc을 사용하여 형식 고정
@@ -33,30 +34,49 @@ const posts = [
  * @property {number} statusCode
  * @property {string | Object} body
  */
+
 /**
- * @typedef Raute
+ * @typedef Route
  * @property {RegExp} url
  * @property {'GET'|'POST'} method
- * @property {() => Promise<APIResponse>} callback
+ * @property {(matches: string[]) => Promise<APIResponse>} callback
  */
 
-/** @type {Raute[]} */
-const rautes = [
+/** @type {Route[]} */
+const routes = [
   {
     url: /^\/posts$/,
     method: 'GET',
     callback: async () => ({
       statusCode: 200,
-      body: {},
+      body: posts,
     }),
   },
   {
     url: /^\/posts\/([a-zA-Z0-9-_]+)$/,
     method: 'GET',
-    callback: async () => ({
-      statusCode: 200,
-      body: {},
-    }),
+    callback: async (matches) => {
+      const postId = matches[1]
+      if (!postId) {
+        return {
+          statusCode: 404,
+          body: 'Not Found',
+        }
+      }
+
+      const post = posts.find((_post) => _post.id === postId)
+      if (!post) {
+        return {
+          statusCode: 404,
+          body: 'Not Found',
+        }
+      }
+
+      return {
+        statusCode: 200,
+        body: post,
+      }
+    },
   },
   {
     url: /^\/posts$/,
@@ -69,5 +89,5 @@ const rautes = [
 ]
 
 module.exports = {
-  rautes,
+  routes,
 }

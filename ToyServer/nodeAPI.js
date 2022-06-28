@@ -12,32 +12,52 @@
  * - 인증 로직 X
  * - RESTful API 사용
  */
+
 // http 모듈 호출
 const http = require('http')
-
 const { routes } = require('./api')
 
 const server = http.createServer((req, res) => {
   async function main() {
     const route = routes.find(
       (_route) =>
-        req.url && _route.url.test(req.url) && _route.method == req.method
+        req.url &&
+        req.method &&
+        _route.url.test(req.url) &&
+        _route.method === req.method
     )
-    if (!route) {
+
+    if (!req.url || !route) {
       res.statusCode = 404
       res.end('Not Found')
       return
     }
-    const result = await route.callback()
+
+    const reggxResult = route.url.exec(req.url)
+    if (!reggxResult) {
+      res.statusCode = 404
+      res.end('Not Found')
+      return
+    }
+
+    const body = await new Promise((resolve) => {
+      req.setEncoding('utf-8')
+      req.on('data', (data) => {
+        resolve(data)
+      })
+    })
+
+    const result = await route.callback(reggxResult)
     res.statusCode = result.statusCode
 
     if (typeof result.body === 'string') {
       res.end(result.body)
     } else {
-      res.setHeader('Content-Type', 'application/json; chatset=utf-8')
+      res.setHeader('Content-Type', 'application/json; charset=utf-8')
       res.end(JSON.stringify(result.body))
     }
   }
+
   main()
 })
 
