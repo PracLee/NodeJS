@@ -33,21 +33,29 @@ const server = http.createServer((req, res) => {
       return
     }
 
-    const reggxResult = route.url.exec(req.url)
-    if (!reggxResult) {
+    const regexResult = route.url.exec(req.url)
+    if (!regexResult) {
       res.statusCode = 404
       res.end('Not Found')
       return
     }
 
-    const body = await new Promise((resolve) => {
-      req.setEncoding('utf-8')
-      req.on('data', (data) => {
-        resolve(data)
-      })
-    })
+    /** @type {Object.<string,*> | undefined} */
+    const reqBody =
+      (req.headers['content-type'] === 'application/json' &&
+        (await new Promise((resolve, reject) => {
+          req.setEncoding('utf-8')
+          req.on('data', (data) => {
+            try {
+              resolve(JSON.parse(data))
+            } catch {
+              reject(new Error('ILL - FORMAT JSON'))
+            }
+          })
+        }))) ||
+      undefined
 
-    const result = await route.callback(reggxResult)
+    const result = await route.callback(regexResult, reqBody)
     res.statusCode = result.statusCode
 
     if (typeof result.body === 'string') {
