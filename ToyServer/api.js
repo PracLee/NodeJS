@@ -2,7 +2,7 @@
 
 // 추상화
 
-// JSDoc을 사용하여 형식 고정필
+// JSDoc을 사용하여 형식 고정
 /**
  * @typedef Post
  * @property {string}id
