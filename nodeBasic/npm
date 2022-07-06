@@ -1,2 +1,11 @@
-// npm : node package manager + registry
-// npmjs.com
+npm : node package manager + registry
+npmjs.com
+
+package-lock.json 에 실제로 설치되는 version이 들어가는 json -> version관리에 필수!
+
+--save-dev : 개발 환경에서만 필요한 패키지
+ -> devDependencies로 들어감
+
+major
+minor
+patch
