@@ -1,5 +1,12 @@
 {
+  "scripts": {
+    "lint": "eslint src/**/*"
+  },
   "dependencies": {
-    "decamelize": "^6.0.0"
+    "decamelize": "^6.0.0",
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "eslint": "^8.19.0"
   }
 }
