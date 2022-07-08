@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "core-js": "^3.23.2",
-    "esbuild": "^0.14.47"
+    "esbuild": "^0.14.47",
+    "yarn": "^1.22.19"
   }
 }
