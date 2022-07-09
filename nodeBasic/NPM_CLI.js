@@ -10,7 +10,7 @@
  *},
  * ->
  * npm run lint 로 호출 가능
- *  => 자주쓰는 기능들을 pakage.json의 scripts에 추가하여 편하게 호출 가능 **
+ *  => 자주쓰는 기능들을 pakage.json의 scripts에 추가하여 편하게 호출 가능 *
  */
 
 var x = 1
