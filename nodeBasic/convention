@@ -1,0 +1,9 @@
+node에서의 convention
+목적 : 심미적인 기능보다는 오류가 발생하지 않는 규칙들을 설정
+ - 파일의 이름
+ - API에서의 error와 result
+ - API 적용 문서
+
+ ex) 구글의 Style Sheet : https://google.github.io/styleguide/jsguide.html
+
+
