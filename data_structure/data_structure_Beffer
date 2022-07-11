@@ -1,0 +1,5 @@
+공식 문서 확인 : https://nodejs.org/dist/latest-v16.x/docs/api/buffer.html
+- 버전 확인 필수 
+
+- Beffer
+고정된 길이의 바이트 시쿼스를 나타내는데 사용되는 객체
