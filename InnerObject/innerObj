@@ -1,0 +1,7 @@
+ ** 항상 공식 Document 확인 **
+__dirname   : file의 위치 확인
+__filename  : file의 이름 확인
+process     : 표준입출력이 스트림으로 연결
+setInterval : 시간 반복
+setTimeout  : 대기했다가 실행
+console     : process와 상호 참조 관계

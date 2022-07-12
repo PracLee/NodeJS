@@ -4,5 +4,5 @@
     },
     "include": [
         "src/**/*"
-, "webBase","ToyServer/**/*", "nodeBasic/node_Basic_Exam.js"    ]
+, "webBase","ToyServer/**/*", "nodeBasic/node_Basic_Exam.js", "JavaScriptBase/async.js"    ]
 }
