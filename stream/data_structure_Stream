@@ -1,0 +1,28 @@
+Stream : 스트림 가능한 소스로부터, 핸들러에게 여러 데이터의 청크로 나누어서 보내주는 형태의 구현체
+ 1. file, network 상관 없이 사용 가능
+ 2. 하나의 큰 파일을 여러개의 청크로 나누어서 처리 할 수 있게 함
+ 3. 큰 데이터를 처리해야 하거나, 비동기적으로만 얻을 수 있는 데이터를 처리해야 할 때 유용함
+ 4. 데이터를 자유 자재로 연결할 수 있는 파이프 같은 역할
+ 5. 데이터를 파이프로 직접 연결하듯이 연결하여 메모리 소모가 적음
+
+Stream의 종류
+1. Readable : Stream으로부터 읽을 수 있음
+ - fs.createReadStream
+ - process.stdin
+ - Server => Client : HTTP request
+ - Client <= Server : HTTP response
+
+2. Writable : Stream에 출력할 수 있음
+ - fs.createWriteStream
+ - process.stdout
+ - Client => Server : HTTP request
+ - Server <= Client : HTTP response
+
+3. Duplex : 입력을 받을 수도 있고, 출력을 보낼 수도 있음
+ - TCP sockets
+ - zlib streams     // 압축 모듈
+ - crypto streams   // 암호화 알고리즘 모듈
+
+4. Transform : 입력받은 스트림을 변환해 새로운 스트림 생성
+ - zlib streams 
+ - crypto streams
