@@ -6,7 +6,7 @@ const ws = fs.createWriteStream('./big_file.txt')
 const NUM_BYTES = 50
 
 for (let i = 0; i < NUM_BYTES; i += 1) {
-  // a를 1mb씩 50번
+  // a를 1mb씩 50번(((a == 1byte) * 1024kb) * 1024mb )
   ws.write('a'.repeat(1024 * 1024))
 }
 
