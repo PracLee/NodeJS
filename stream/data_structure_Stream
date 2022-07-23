@@ -18,7 +18,7 @@ Stream의 종류
  - Client => Server : HTTP request
  - Server <= Client : HTTP response
 
-3. Duplex : 입력을 받을 수도 있고, 출력을 보낼 수도 있음
+3. Duplex : 입력을 받거나 보냄
  - TCP sockets
  - zlib streams     // 압축 모듈
  - crypto streams   // 암호화 알고리즘 모듈
