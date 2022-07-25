@@ -12,7 +12,7 @@ Stream의 종류
  - Server => Client : HTTP request
  - Client <= Server : HTTP response
 
-2. Writable : Stream에 출력할 수 있음
+2. Writable : Stream에 출력
  - fs.createWriteStream
  - process.stdout
  - Client => Server : HTTP request
