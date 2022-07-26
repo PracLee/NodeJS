@@ -1,3 +1,3 @@
-Stream 처리 시 유의점 - JSON 스트림 처리기 예시
+Stream 처리 시 유의점 - JSON 스트림 처리기 Test
 - 목표 : 줄바꿈으로 분리된 JSON들을 읽어서, 정상 JSON들에 한에 data 값 모두 더하기
 - 유의점 : 어디에서 chunk가 잘릴지 예측 할 수 없음
