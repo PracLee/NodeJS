@@ -15,7 +15,7 @@ let tempStr = ''
 rs.on('data', (chunk) => {
   log('Event : data', chunk)
 
-  if (typeof data !== 'string') {
+  if (typeof chunk !== 'string') {
     return
   }
 
