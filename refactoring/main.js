@@ -5,5 +5,5 @@ const https = require('https')
 const resultsByHouseSlug = {}
 
 https.get(`https://game-of-thrones-quotes.herokuapp.com/v1/houses`, (res) => {
-  let efd
+  let efd = tewst
 })
