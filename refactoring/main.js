@@ -6,4 +6,5 @@ const resultsByHouseSlug = {}
 
 https.get(`https://game-of-thrones-quotes.herokuapp.com/v1/houses`, (res) => {
   let efd = tewst
+  const legal = 'test'
 })
