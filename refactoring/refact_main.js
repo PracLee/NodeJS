@@ -11,22 +11,45 @@ const https = require('https')
  */
 
 const GOTAPIPREFIX = 'https://game-of-thrones-quotes.herokuapp.com/v1'
+
 /**
- * @returns {Promise<House[]>}
+ *
+ * @param {string} url
+ * @returns {*}
  */
-async function getHouses() {
-  return new Promise((resolve) => {
-    https.get(`${GOTAPIPREFIX}/houses`, (res) => {
+async function getHttpsJson(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, (res) => {
       let jsonStr = ''
       res.setEncoding('utf-8')
       res.on('data', (data) => {
         jsonStr += data
       })
       res.on('end', () => {
-        resolve(JSON.parse(jsonStr))
+        try {
+          const parsed = JSON.parse(jsonStr)
+          resolve(parsed)
+        } catch {
+          reject(new Error('The server response was nat a vaild JSON document'))
+        }
       })
     })
   })
+}
+
+/**
+ * @returns {Promise<House[]>}
+ */
+async function getHouses() {
+  return getHttpsJson(`${GOTAPIPREFIX}/houses`)
+}
+
+/**
+ * @param {string} quote
+ * @returns {string}
+ */
+function sanitizeQuote(quote) {
+  return quote.replace(/[^a-zA-Z0-9., ]/g, '')
 }
 
 /**
@@ -35,22 +58,19 @@ async function getHouses() {
  * @returns{Promise<string>}
  */
 async function getMergedQuitesOfCharacter(slug) {
-  return new Promise((resolve) => {
-    https.get(`${GOTAPIPREFIX}/character/${slug}`, (res) => {
-      let jsonStr = ''
-      res.setEncoding('utf-8')
-      res.on('data', (data) => {
-        jsonStr += data
-      })
-      res.on('end', () => {
-        const json = JSON.parse(jsonStr)
-      })
-    })
-  })
+  const character = await getHttpsJson(`${GOTAPIPREFIX}/character/${slug}`)
+  return sanitizeQuote(character[0].quotes.join('  '))
 }
 
 async function main() {
   const houses = await getHouses()
+  houses.forEach((house) => {
+    house.members.forEach((member) => {
+      getMergedQuitesOfCharacter(member.slug).then((quotes) =>
+        console.log(house.slug, member.slug, quotes)
+      )
+    })
+  })
   console.log(houses)
 }
 
