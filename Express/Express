@@ -1,0 +1,8 @@
+ Express
+ - https://www.expressjs.com
+ - 가장 대표적인 web Framework
+ - 가장 유명하고 가장 많이 쓰임
+ - npm을 사용하여 설치
+   * npm install express
+ - type 도움을 위한 패키지 설치 (개발용)
+   * npm install --save-dev @types/express
