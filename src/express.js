@@ -7,6 +7,7 @@ const PORT = 8080
 // 어떤 경로의 응답
 app.use('/', (req, res) => {
   res.send(`Hello, express!`)
+  res.rawListeners
 })
 
 app.listen(PORT, () => {
