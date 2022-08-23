@@ -5,7 +5,10 @@ const app = express()
 
 const PORT = 8080
 
-// 어떤 경로의 응답
+// express는 미들웨어를 가지고있어서 그때그때 알맞은 미들웨어를 사용하여 그때그때 상황에 맞춰서 사용할 수 있음!
+// 여러가지 함수들을 이어서 사용할 수 있음!
+// Request 객체의 형태를 파악하려면 Express의 문서를 확인!
+// node가 기본적으로 가지고 있는 res, req와는 다름!
 // 노드는 기본적으로 비동기로 처리되기 때문에 callback으로 처리되고, next인자로 다음 미들웨어로 넘어 갈 수 있음
 
 app.use(
@@ -39,8 +42,3 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`The Express server is listening at port : ${PORT}`)
 })
-
-// express는 미들웨어를 가지고있어서 그때그때 알맞은 미들웨어를 사용하여 그때그때 상황에 맞춰서 사용할 수 있음!
-// 여러가지 함수들을 이어서 사용할 수 있음!
-// Request 객체의 형태를 파악하려면 Express의 문서를 확인!
-// node가 기본적으로 가지고 있는 res, req와는 다름!
