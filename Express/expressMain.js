@@ -40,7 +40,7 @@ userRouter.get('/:id', (req, res) => {
   res.send(req.user)
 })
 
-// po
+// post
 userRouter.post('/:id/nickname', (req, res) => {
   const { user } = req
   const { nickname } = req.body
