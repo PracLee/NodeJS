@@ -5,6 +5,10 @@ const app = express()
 // URL의 prefix가 같을 경우 라우터 사용가능
 const userRouter = express.Router()
 app.use(bodyParser.json())
+
+app.set('views', 'Express/views')
+app.set('view engine', 'pug')
+
 const PORT = 8080
 
 // tempDB
@@ -30,14 +34,20 @@ userRouter.get('/', (req, res) => {
 })
 
 userRouter.param('id', (req, res, next, value) => {
-  console.log(`id parameter :`, value)
   req.user = USER[value]
   next()
 })
 
 userRouter.get('/:id', (req, res) => {
-  console.log(`userRouter get id`)
-  res.send(req.user)
+  const resMimeType = req.accepts(['json', 'html'])
+
+  if (resMimeType === 'json') {
+    res.send(req.user)
+  } else if (resMimeType === 'html') {
+    res.render('user-profile', {
+      nickname: req.user.nickname,
+    })
+  }
 })
 
 // post
@@ -52,6 +62,12 @@ userRouter.post('/:id/nickname', (req, res) => {
 
 // 라우터의 조건 명시
 app.use('/users', userRouter)
+
+app.get('/', (req, res) => {
+  res.render('index', {
+    message: 'Hello Pug',
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`The Express server is listening at port : ${PORT}`)
