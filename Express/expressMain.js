@@ -6,6 +6,7 @@ const app = express()
 const userRouter = express.Router()
 app.use(bodyParser.json())
 
+// HTML (PUG)
 app.set('views', 'Express/views')
 app.set('view engine', 'pug')
 
@@ -62,6 +63,9 @@ userRouter.post('/:id/nickname', (req, res) => {
 
 // 라우터의 조건 명시
 app.use('/users', userRouter)
+
+// CSS
+app.use('/public', express.static('Express/public'))
 
 app.get('/', (req, res) => {
   res.render('index', {
