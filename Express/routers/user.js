@@ -71,3 +71,5 @@ app.get('/', (req, res) => {
     message: 'Hello Pug',
   })
 })
+
+module.exports = router
