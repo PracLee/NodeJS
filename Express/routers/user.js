@@ -2,7 +2,6 @@ const express = require('express')
 
 // URL의 prefix가 같을 경우 라우터 사용가능
 const router = express.Router()
-app.use(bodyParser.json())
 
 // tempDB
 const USERS = {
@@ -29,9 +28,21 @@ router.get('/', (req, res) => {
   res.send(`User List`)
 })
 
-router.param('id', (req, res, next, value) => {
-  req.user = USERS[value]
-  next()
+router.param('id', async (req, res, next, value) => {
+  try {
+    const user = USERS[value]
+
+    if (!user) {
+      const err = new Error('User not found.')
+      err.statusCode = 404
+      throw err
+    }
+
+    req.user = user
+    next()
+  } catch (err) {
+    next(err)
+  }
 })
 
 router.get('/:id', (req, res) => {
@@ -58,18 +69,6 @@ router.post('/:id/nickname', (req, res) => {
   user.nickname = nickname
   //register user
   res.send(`User nickname updated ${nickname}`)
-})
-
-// 라우터의 조건 명시
-app.use('/users', userRouter)
-
-// CSS
-app.use('/public', express.static('Express/public'))
-
-app.get('/', (req, res) => {
-  res.render('index', {
-    message: 'Hello Pug',
-  })
 })
 
 module.exports = router
