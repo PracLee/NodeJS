@@ -1,0 +1,6 @@
+유닛테스트 자동화 tool
+Jest : javascript unit test tools
+ - npm install --save-dev jest @types/jest
+supertest : Express app에 대한 expect 작성
+ - npm install --save-dev supertest @types/supertest
+ 
