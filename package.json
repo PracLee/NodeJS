@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "test" : "jest",
     "server": "nodemon Express/expressMain.js"
   },
   "repository": {
