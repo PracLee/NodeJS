@@ -9,5 +9,9 @@ const request = supertest('./app')
 
 test('our first test', async () => {
   const result = await request.get('/users/14').accept('application/json')
-  console.log(result)
+  console.log(result.body)
+
+  expect(result.body).toMatchObject({
+    nickname: expect.any(String),
+  })
 })
