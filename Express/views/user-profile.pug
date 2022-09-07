@@ -5,3 +5,8 @@ html
         h1 User Profile Page 
         h2.gold  Nickname 
         div.green.big= nickname
+
+        h2 Profile 
+        form(action=`/user/${userId}/profile` method="post" enctype="multipart/form-data")
+            input(type="file" name = "profile")
+            button Upload Profile Picture 

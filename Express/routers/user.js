@@ -7,9 +7,11 @@ const router = express.Router()
 const USERS = {
   14: {
     nickname: 'fourteen',
+    profileImage: undefined,
   },
   15: {
     nickname: 'fifteen',
+    profileImage: undefined,
   },
 }
 
