@@ -10,11 +10,11 @@ const upload = multer({ dest: 'uploads/' })
 const USERS = {
   14: {
     nickname: 'fourteen',
-    profileImage: undefined,
+    profileImageKey: undefined,
   },
   15: {
     nickname: 'fifteen',
-    profileImage: undefined,
+    profileImageKey: undefined,
   },
 }
 
@@ -58,6 +58,8 @@ router.get('/:id', (req, res) => {
   } else if (resMimeType === 'html') {
     res.render('user-profile', {
       nickname: req.user.nickname,
+      userId: req.params.id,
+      profileImageURL: `upload/${req.user.profileImageKey}`,
     })
   }
 })
@@ -77,8 +79,12 @@ router.post('/:id/nickname', (req, res) => {
 })
 
 router.post('/:id/profile', upload.single('profile'), (req, res) => {
-  const { user } = req
+  console.log(req.files)
 
-  res.send('userproile uploaded')
+  const { user } = req
+  const { filename } = req.file
+  user.profileImageKey = filename
+
+  res.send(`Userprofile Uploaded : ${filename}`)
 })
 module.exports = router
