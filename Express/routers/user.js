@@ -3,6 +3,9 @@ const express = require('express')
 // URL의 prefix가 같을 경우 라우터 사용가능
 const router = express.Router()
 
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 // tempDB
 const USERS = {
   14: {
@@ -73,4 +76,9 @@ router.post('/:id/nickname', (req, res) => {
   res.send(`User nickname updated ${nickname}`)
 })
 
+router.post('/:id/profile', upload.single('profile'), (req, res) => {
+  const { user } = req
+
+  res.send('userproile uploaded')
+})
 module.exports = router
