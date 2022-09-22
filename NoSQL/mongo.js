@@ -12,3 +12,26 @@ client.connect((err) => {
   // perform actions on the collection object
   client.close()
 })
+
+async function main() {
+  const c = await client.connect()
+  console.log(c)
+  console.log('OK')
+
+  const users = client.db(`fc21`).collection('users')
+  await users.deleteMany({})
+
+  users.insertMany([
+    {
+      name: 'foo',
+    },
+    { name: 'bar' },
+    { name: 'barz' },
+  ])
+  const cursor = await users.find({})
+  await cursor.forEach(console.log)
+
+  await client.close()
+}
+
+main()
